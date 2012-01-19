@@ -28,6 +28,10 @@ window.Tron.Sprite = (function() {
         this.x -= this.velocity;
         break;
     }
+
+    if (this.x < 0 || this.y < 0 || this.x > this.canvas.width || this.y > this.canvas.height) {
+      this._die();
+    }
   }
 
   Sprite.prototype.draw = function() {
@@ -35,6 +39,13 @@ window.Tron.Sprite = (function() {
     context.fillStyle = this.color;
     context.fillRect(this.x, this.y, this.width, this.height);
   };
+
+  Sprite.prototype._die = function() {
+    this.x = 450;
+    this.y = 400;
+    this.direction = Sprite.DIRECTION.NORTH;
+    this.velocity = 5;
+  }
 
   return Sprite;
 })();
