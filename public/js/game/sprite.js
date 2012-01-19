@@ -29,7 +29,10 @@ window.Tron.Sprite = (function() {
         break;
     }
 
-    if (this.x < 0 || this.y < 0 || this.x > this.canvas.width || this.y > this.canvas.height) {
+    if (this.x < 0 ||
+        this.y < 0 ||
+        this.x + this.width > this.canvas.width ||
+        this.y + this.height > this.canvas.height) {
       this._die();
     }
   }
@@ -39,6 +42,30 @@ window.Tron.Sprite = (function() {
     context.fillStyle = this.color;
     context.fillRect(this.x, this.y, this.width, this.height);
   };
+
+  Sprite.prototype.turnNorth = function() {
+    if (this.direction != Sprite.DIRECTION.SOUTH) {
+      this.direction = Sprite.DIRECTION.NORTH;
+    }
+  }
+
+  Sprite.prototype.turnEast = function() {
+    if (this.direction != Sprite.DIRECTION.WEST) {
+      this.direction = Sprite.DIRECTION.EAST;
+    }
+  }
+
+  Sprite.prototype.turnSouth = function() {
+    if (this.direction != Sprite.DIRECTION.NORTH) {
+      this.direction = Sprite.DIRECTION.SOUTH;
+    }
+  }
+
+  Sprite.prototype.turnWest = function() {
+    if (this.direction != Sprite.DIRECTION.EAST) {
+      this.direction = Sprite.DIRECTION.WEST;
+    }
+  }
 
   Sprite.prototype._die = function() {
     this.x = 450;
