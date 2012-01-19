@@ -1,0 +1,11 @@
+.display-box {
+  display: -moz-box;
+  display: -webkit-box;
+  display: box;
+}
+
+.box-shadow (@horizontalOffset, @verticalOffset, @blurRadius, @color) {
+  -moz-box-shadow: @horizontalOffset @verticalOffset @blurRadius @color;
+  -webkit-box-shadow: @horizontalOffset @verticalOffset @blurRadius @color;
+  box-shadow: @horizontalOffset @verticalOffset @blurRadius @color;
+}
