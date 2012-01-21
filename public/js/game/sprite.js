@@ -9,6 +9,7 @@ window.Tron.Sprite = (function() {
     this.velocity = 5;
     this.width = 5;
     this.height = 5;
+    this.path = new Tron.Path(this.x + this.width/2, this.y + this.height/2);
   };
 
   Sprite.DIRECTION = { NORTH: 0, EAST: 1, SOUTH: 2, WEST: 3 };
@@ -29,6 +30,8 @@ window.Tron.Sprite = (function() {
         break;
     }
 
+    this.path.endpoint = [this.x + this.width/2, this.y + this.height/2];
+
     if (this.x < 0 ||
         this.y < 0 ||
         this.x + this.width > this.canvas.width ||
@@ -40,12 +43,15 @@ window.Tron.Sprite = (function() {
   Sprite.prototype.draw = function() {
     var context = this.canvas.getContext("2d");
     context.fillStyle = this.color;
+    context.strokeStyle = this.color;
     context.fillRect(this.x, this.y, this.width, this.height);
+    this.path.draw(this.canvas);
   };
 
   Sprite.prototype.turn = function(direction) {
     if (this.direction != direction && this.direction != (direction + 2) % 4) {
       this.direction = direction;
+      this.path.addTurn();
     }
   };
 
@@ -54,6 +60,7 @@ window.Tron.Sprite = (function() {
     this.y = 400;
     this.direction = Sprite.DIRECTION.NORTH;
     this.velocity = 5;
+    this.path = new Tron.Path(this.x + this.width/2, this.y + this.height/2);
   };
 
   return Sprite;

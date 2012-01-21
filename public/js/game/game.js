@@ -24,7 +24,7 @@ window.Tron.Game = (function() {
   };
 
   Game.prototype._onKeydown = function(e) {
-    console.log("keydown: " + e.which);
+    //console.log("keydown: " + e.which);
     switch(e.which) {
       case KEY_UP:
         e.preventDefault();
