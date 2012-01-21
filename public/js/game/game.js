@@ -28,19 +28,19 @@ window.Tron.Game = (function() {
     switch(e.which) {
       case KEY_UP:
         e.preventDefault();
-        this.sprite.turnNorth();
+        this.sprite.turn(Tron.Sprite.DIRECTION.NORTH);
         break;
       case KEY_RIGHT:
         e.preventDefault();
-        this.sprite.turnEast();
+        this.sprite.turn(Tron.Sprite.DIRECTION.EAST);
         break;
       case KEY_DOWN:
         e.preventDefault();
-        this.sprite.turnSouth();
+        this.sprite.turn(Tron.Sprite.DIRECTION.SOUTH);
         break;
       case KEY_LEFT:
         e.preventDefault();
-        this.sprite.turnWest();
+        this.sprite.turn(Tron.Sprite.DIRECTION.WEST);
         break;
     }
   }

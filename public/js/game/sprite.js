@@ -43,36 +43,18 @@ window.Tron.Sprite = (function() {
     context.fillRect(this.x, this.y, this.width, this.height);
   };
 
-  Sprite.prototype.turnNorth = function() {
-    if (this.direction != Sprite.DIRECTION.SOUTH) {
-      this.direction = Sprite.DIRECTION.NORTH;
+  Sprite.prototype.turn = function(direction) {
+    if (this.direction != direction && this.direction != (direction + 2) % 4) {
+      this.direction = direction;
     }
-  }
-
-  Sprite.prototype.turnEast = function() {
-    if (this.direction != Sprite.DIRECTION.WEST) {
-      this.direction = Sprite.DIRECTION.EAST;
-    }
-  }
-
-  Sprite.prototype.turnSouth = function() {
-    if (this.direction != Sprite.DIRECTION.NORTH) {
-      this.direction = Sprite.DIRECTION.SOUTH;
-    }
-  }
-
-  Sprite.prototype.turnWest = function() {
-    if (this.direction != Sprite.DIRECTION.EAST) {
-      this.direction = Sprite.DIRECTION.WEST;
-    }
-  }
+  };
 
   Sprite.prototype._die = function() {
     this.x = 450;
     this.y = 400;
     this.direction = Sprite.DIRECTION.NORTH;
     this.velocity = 5;
-  }
+  };
 
   return Sprite;
 })();
