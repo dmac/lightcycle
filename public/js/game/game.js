@@ -18,8 +18,8 @@ window.Tron.Game = (function() {
 
   Game.prototype._loop = function() {
     var context = this.canvas.getContext("2d");
-    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.sprite.tick();
+    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.sprite.draw();
   };
 

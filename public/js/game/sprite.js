@@ -38,6 +38,10 @@ window.Tron.Sprite = (function() {
         this.y + this.height > this.canvas.height) {
       this._die();
     }
+
+    if (this._newPositionContainsNonBlackPixel()) {
+      this._die();
+    }
   }
 
   Sprite.prototype.draw = function() {
@@ -61,6 +65,19 @@ window.Tron.Sprite = (function() {
     this.direction = Sprite.DIRECTION.NORTH;
     this.velocity = 5;
     this.path = new Tron.Path(this.x + this.width/2, this.y + this.height/2);
+  };
+
+  Sprite.prototype._newPositionContainsNonBlackPixel = function() {
+    // If any pixel in thie new position is not black we count it as a collision.
+    // pixelData is a 1d array of [r, g, b, a, ...] color/alpha values.
+    var pixelData = this.canvas.getContext("2d").getImageData(this.x, this.y, this.width,  this.height).data;
+    var i, j;
+    for (i = 0; i < pixelData.length; i+= 4) {
+      for (j = 0; j < 4; j++) {
+        if (pixelData[i + j] != 0) return true;
+      }
+    }
+    return false;
   };
 
   return Sprite;
