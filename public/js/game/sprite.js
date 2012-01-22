@@ -32,14 +32,7 @@ window.Tron.Sprite = (function() {
 
     this.path.endpoint = [this.x + this.width/2, this.y + this.height/2];
 
-    if (this.x < 0 ||
-        this.y < 0 ||
-        this.x + this.width > this.canvas.width ||
-        this.y + this.height > this.canvas.height) {
-      this._die();
-    }
-
-    if (this._newPositionContainsNonBlackPixel()) {
+    if (this._newPositionCollidesWithBoundary() || this._newPositionContainsNonBlackPixel()) {
       this._die();
     }
   }
@@ -79,6 +72,13 @@ window.Tron.Sprite = (function() {
     }
     return false;
   };
+
+  Sprite.prototype._newPositionCollidesWithBoundary = function() {
+    return (this.x < 0 ||
+            this.y < 0 ||
+            this.x + this.width > this.canvas.width ||
+            this.y + this.height > this.canvas.height);
+  }
 
   return Sprite;
 })();
