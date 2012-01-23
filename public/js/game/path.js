@@ -1,8 +1,13 @@
 window.Tron.Path = (function() {
 
-  var Path = function(startX, startY) {
-    this.turns = [[startX, startY]];
-    this.endpoint = [startX, startY];
+  var Path = function(cycle) {
+    this.cycle = cycle;
+    this.endpoint = [this.cycle.x + this.cycle.width / 2, this.cycle.y + this.cycle.height / 2];
+    this.turns = [this.endpoint];
+  }
+
+  Path.prototype.tick = function() {
+    this.endpoint = [this.cycle.x + this.cycle.width / 2, this.cycle.y + this.cycle.height / 2];
   }
 
   Path.prototype.addTurn = function() {
