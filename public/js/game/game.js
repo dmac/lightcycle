@@ -8,7 +8,7 @@ window.Tron.Game = (function() {
 
   var Game = function() {
     this.canvas = document.getElementById("gameCanvas")
-    this.sprite = new Tron.Sprite(this.canvas);
+    this.cycle = new Tron.Cycle(this.canvas);
     document.addEventListener("keydown", this._onKeydown.bind(this));
   };
 
@@ -18,9 +18,9 @@ window.Tron.Game = (function() {
 
   Game.prototype._loop = function() {
     var context = this.canvas.getContext("2d");
-    this.sprite.tick();
+    this.cycle.tick();
     context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.sprite.draw();
+    this.cycle.draw();
   };
 
   Game.prototype._onKeydown = function(e) {
@@ -28,19 +28,19 @@ window.Tron.Game = (function() {
     switch(e.which) {
       case KEY_UP:
         e.preventDefault();
-        this.sprite.turn(Tron.Sprite.DIRECTION.NORTH);
+        this.cycle.turn(Tron.Cycle.DIRECTION.NORTH);
         break;
       case KEY_RIGHT:
         e.preventDefault();
-        this.sprite.turn(Tron.Sprite.DIRECTION.EAST);
+        this.cycle.turn(Tron.Cycle.DIRECTION.EAST);
         break;
       case KEY_DOWN:
         e.preventDefault();
-        this.sprite.turn(Tron.Sprite.DIRECTION.SOUTH);
+        this.cycle.turn(Tron.Cycle.DIRECTION.SOUTH);
         break;
       case KEY_LEFT:
         e.preventDefault();
-        this.sprite.turn(Tron.Sprite.DIRECTION.WEST);
+        this.cycle.turn(Tron.Cycle.DIRECTION.WEST);
         break;
     }
   }

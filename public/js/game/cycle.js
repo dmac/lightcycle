@@ -1,31 +1,31 @@
-window.Tron.Sprite = (function() {
+window.Tron.Cycle = (function() {
 
-  var Sprite = function(canvas) {
+  var Cycle = function(canvas) {
     this.canvas = canvas;
     this.color = "#FF33C4";
     this.x = 450;
     this.y = 400;
-    this.direction = Sprite.DIRECTION.NORTH;
+    this.direction = Cycle.DIRECTION.NORTH;
     this.velocity = 5;
     this.width = 5;
     this.height = 5;
     this.path = new Tron.Path(this);
   };
 
-  Sprite.DIRECTION = { NORTH: 0, EAST: 1, SOUTH: 2, WEST: 3 };
+  Cycle.DIRECTION = { NORTH: 0, EAST: 1, SOUTH: 2, WEST: 3 };
 
-  Sprite.prototype.tick = function() {
+  Cycle.prototype.tick = function() {
     switch(this.direction) {
-      case Sprite.DIRECTION.NORTH:
+      case Cycle.DIRECTION.NORTH:
         this.y -= this.velocity;
         break;
-      case Sprite.DIRECTION.EAST:
+      case Cycle.DIRECTION.EAST:
         this.x += this.velocity;
         break;
-      case Sprite.DIRECTION.SOUTH:
+      case Cycle.DIRECTION.SOUTH:
         this.y += this.velocity;
         break;
-      case Sprite.DIRECTION.WEST:
+      case Cycle.DIRECTION.WEST:
         this.x -= this.velocity;
         break;
     }
@@ -37,7 +37,7 @@ window.Tron.Sprite = (function() {
     }
   }
 
-  Sprite.prototype.draw = function() {
+  Cycle.prototype.draw = function() {
     var context = this.canvas.getContext("2d");
     context.fillStyle = this.color;
     context.strokeStyle = this.color;
@@ -45,22 +45,22 @@ window.Tron.Sprite = (function() {
     this.path.draw(this.canvas);
   };
 
-  Sprite.prototype.turn = function(direction) {
+  Cycle.prototype.turn = function(direction) {
     if (this.direction != direction && this.direction != (direction + 2) % 4) {
       this.direction = direction;
       this.path.addTurn();
     }
   };
 
-  Sprite.prototype._die = function() {
+  Cycle.prototype._die = function() {
     this.x = 450;
     this.y = 400;
-    this.direction = Sprite.DIRECTION.NORTH;
+    this.direction = Cycle.DIRECTION.NORTH;
     this.velocity = 5;
     this.path = new Tron.Path(this);
   };
 
-  Sprite.prototype._newPositionContainsNonBlackPixel = function() {
+  Cycle.prototype._newPositionContainsNonBlackPixel = function() {
     // If any pixel in thie new position is not black we count it as a collision.
     // pixelData is a 1d array of [r, g, b, a, ...] color/alpha values.
     var pixelData = this.canvas.getContext("2d").getImageData(this.x, this.y, this.width,  this.height).data;
@@ -73,12 +73,12 @@ window.Tron.Sprite = (function() {
     return false;
   };
 
-  Sprite.prototype._newPositionCollidesWithBoundary = function() {
+  Cycle.prototype._newPositionCollidesWithBoundary = function() {
     return (this.x < 0 ||
             this.y < 0 ||
             this.x + this.width > this.canvas.width ||
             this.y + this.height > this.canvas.height);
   }
 
-  return Sprite;
+  return Cycle;
 })();
