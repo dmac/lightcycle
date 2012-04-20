@@ -7,21 +7,45 @@ window.Tron.Game = (function() {
   var KEY_DOWN = 40;
 
   var Game = function() {
+    this.socket = io.connect("/");
     this.canvas = document.getElementById("gameCanvas")
-    this.cycle = new Tron.Cycle(this.canvas);
+    this.cycles = [];
     document.addEventListener("keydown", this._onKeydown.bind(this));
+    this.socket.on("update", this._onUpdate.bind(this));
   };
 
-  Game.prototype.run = function() {
-    setInterval(function() { this._loop(); }.bind(this), 1000/FPS);
-  };
-
-  Game.prototype._loop = function() {
+  Game.prototype._draw = function() {
     var context = this.canvas.getContext("2d");
-    this.cycle.tick();
     context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.cycle.draw();
-  };
+    for (var i = 0; i < this.cycles.length; i++) {
+      this.cycles[i].draw();
+    }
+  }
+
+  Game.prototype._onUpdate = function(data) {
+    this.cycles = this._resolveCycleData(data.cycles);
+    this._draw();
+  }
+
+  Game.prototype._resolveCycleData = function(cycleData) {
+    var cycles = [], cycle, path;
+
+    for(var i = 0; i < cycleData.length; i++) {
+      cycle = new Tron.Cycle(this.canvas);
+      cycle.x = cycleData[i].x;
+      cycle.y = cycleData[i].y;
+      cycle.direction = cycleData[i].direction;
+
+      path = new Tron.Path(cycle);
+      path.endpoint = cycleData[i].path.endpoint;
+      path.turns = cycleData[i].path.turns;
+      cycle.path = path;
+
+      cycles.push(cycle);
+    }
+
+    return cycles;
+  }
 
   Game.prototype._onKeydown = function(e) {
     //console.log("keydown: " + e.which);

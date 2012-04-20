@@ -5,5 +5,6 @@ require([
     "/js/game/cycle.js",
     "/js/game/path.js"], function() {
   var game = new Tron.Game();
-  game.run();
+  //game.run();
 });
+

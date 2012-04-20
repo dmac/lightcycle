@@ -1,8 +1,13 @@
 var express = require("express")
   , less = require("less")
   , fs = require("fs")
+  , io = require("socket.io")
+  , Game = require("./models/game")
 
-var app = express.createServer();
+var app = express.createServer(),
+    io = io.listen(app);
+
+var game = new Game(io);
 
 app.configure(function() {
   app.set('view engine', 'ejs');
