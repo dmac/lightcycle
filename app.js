@@ -2,7 +2,7 @@ var express = require("express")
   , less = require("less")
   , fs = require("fs")
   , io = require("socket.io")
-  , Game = require("./models/game")
+  , Game = require("./lib/game")
 
 var app = express.createServer(),
     io = io.listen(app);
