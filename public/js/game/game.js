@@ -11,6 +11,7 @@ window.Tron.Game = (function() {
     this.canvas = document.getElementById("gameCanvas")
     this.cycles = [];
     document.addEventListener("keydown", this._onKeydown.bind(this));
+    this.socket.on("assignId", this._onAssignId.bind(this));
     this.socket.on("update", this._onUpdate.bind(this));
   };
 
@@ -20,6 +21,11 @@ window.Tron.Game = (function() {
     for (var i = 0; i < this.cycles.length; i++) {
       this.cycles[i].draw();
     }
+  }
+
+  Game.prototype._onAssignId = function(data) {
+    this.playerId = data.playerId;
+    this.socket.emit("newGame", { playerId: this.playerId });
   }
 
   Game.prototype._onUpdate = function(data) {
@@ -52,19 +58,31 @@ window.Tron.Game = (function() {
     switch(e.which) {
       case KEY_UP:
         e.preventDefault();
-        this.cycle.turn(Tron.Cycle.DIRECTION.NORTH);
+        this.socket.emit("input", {
+          playerId: this.playerId,
+          direction: Tron.Cycle.DIRECTION.NORTH
+        });
         break;
       case KEY_RIGHT:
         e.preventDefault();
-        this.cycle.turn(Tron.Cycle.DIRECTION.EAST);
+        this.socket.emit("input", {
+          playerId: this.playerId,
+          direction: Tron.Cycle.DIRECTION.EAST
+        });
         break;
       case KEY_DOWN:
         e.preventDefault();
-        this.cycle.turn(Tron.Cycle.DIRECTION.SOUTH);
+        this.socket.emit("input", {
+          playerId: this.playerId,
+          direction: Tron.Cycle.DIRECTION.SOUTH
+        });
         break;
       case KEY_LEFT:
         e.preventDefault();
-        this.cycle.turn(Tron.Cycle.DIRECTION.WEST);
+        this.socket.emit("input", {
+          playerId: this.playerId,
+          direction: Tron.Cycle.DIRECTION.WEST
+        });
         break;
     }
   }
