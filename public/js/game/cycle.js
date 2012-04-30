@@ -2,7 +2,7 @@ window.Tron.Cycle = (function() {
 
   var Cycle = function(canvas) {
     this.canvas = canvas;
-    this.color = "#FF33C4";
+    this.color = "#000000";
     this.x = 450;
     this.y = 400;
     this.direction = Cycle.DIRECTION.NORTH;

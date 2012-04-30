@@ -41,6 +41,7 @@ window.Tron.Game = (function() {
       cycle.x = cycleData[i].x;
       cycle.y = cycleData[i].y;
       cycle.direction = cycleData[i].direction;
+      cycle.color = cycleData[i].color;
 
       path = new Tron.Path(cycle);
       path.endpoint = cycleData[i].path.endpoint;
