@@ -6,14 +6,6 @@ window.Tron.Path = (function() {
     this.turns = [this.endpoint];
   }
 
-  Path.prototype.tick = function() {
-    this.endpoint = [this.cycle.x + this.cycle.width / 2, this.cycle.y + this.cycle.height / 2];
-  }
-
-  Path.prototype.addTurn = function() {
-    this.turns.push(this.endpoint);
-  };
-
   Path.prototype.draw = function(canvas) {
     var i, context = canvas.getContext("2d");
     context.beginPath();
