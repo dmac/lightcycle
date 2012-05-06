@@ -15,7 +15,6 @@ window.Tron.Cycle = (function() {
   Cycle.DIRECTION = { NORTH: 0, EAST: 1, SOUTH: 2, WEST: 3 };
 
   Cycle.prototype.draw = function() {
-    console.log(this.x, this.y, this.width, this.height);
     var context = this.canvas.getContext("2d");
     context.fillStyle = this.color;
     context.strokeStyle = this.color;

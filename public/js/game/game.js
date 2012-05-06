@@ -18,8 +18,13 @@ window.Tron.Game = (function() {
   Game.prototype._draw = function() {
     var context = this.canvas.getContext("2d");
     context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
     for (var i = 0; i < this.cycles.length; i++) {
       this.cycles[i].draw();
+    }
+
+    for (i = 0; i < this.players.length; i++) {
+      this.players[i].draw();
     }
   }
 
@@ -30,12 +35,14 @@ window.Tron.Game = (function() {
 
   Game.prototype._onUpdate = function(data) {
     this.cycles = this._resolveCycleData(data.cycles);
+    this.players = this._resolvePlayerData(data.players);
     this._draw();
   }
 
   Game.prototype._resolveCycleData = function(cycleData) {
     var cycles = [], cycle, path;
 
+    // TODO: Put this in a cycle.deserialize method
     for(var i = 0; i < cycleData.length; i++) {
       cycle = new Tron.Cycle(this.canvas);
       cycle.x = cycleData[i].x;
@@ -52,6 +59,19 @@ window.Tron.Game = (function() {
     }
 
     return cycles;
+  }
+
+  Game.prototype._resolvePlayerData = function(playerData) {
+    var players = [];
+
+    // TODO: Put this in a player.deserialize method
+    for (var i = 0; i < playerData.length; i++) {
+      player = new Tron.Player(playerData[i].playerId);
+      player.score = playerData[i].score;
+      players.push(player);
+    }
+
+    return players;
   }
 
   Game.prototype._onKeydown = function(e) {

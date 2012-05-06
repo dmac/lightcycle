@@ -10,18 +10,38 @@ body {
 }
 
 #main {
-  background: url(/images/tron_banner.jpg) 115px -50px no-repeat;
-  margin: auto;
-  width: 900px;
-  padding-top: 240px;
+  display: table;
+  border-spacing: 20px;
 
+  background: url(/images/tron_banner.jpg) 225px -50px no-repeat;
+  margin: auto;
+  padding-top: 240px;
 
   #canvasContainer {
     .box-shadow(0px, 0px, 10px, #9CF3FF);
-    margin: auto;
+    display: table-cell;
 
     #gameCanvas {
       background: #000000;
+    }
+  }
+
+  #scoreBoard {
+    .box-shadow(0px, 0px, 10px, #9CF3FF);
+    display: table-cell;
+    vertical-align: top;
+    width: 250px;
+    color: white;
+    font-family: Courier, sans-serif;
+
+    .scoreRow {
+      padding: 3px 5px;
+      border-bottom: 1px solid gray;
+      overflow: hidden;
+
+      .playerScore {
+        float: right;
+      }
     }
   }
 }

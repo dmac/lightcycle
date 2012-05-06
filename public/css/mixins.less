@@ -4,6 +4,18 @@
   display: box;
 }
 
+.box-orient(@orientation) {
+  -moz-box-orient: @orientation;
+  -webkit-box-orient: @orientation;
+  box-orient: @orientation;
+}
+
+.box-pack(@position) {
+  -moz-box-pack: @position;
+  -webkit-box-pack: @position;
+  box-pack: @position;
+}
+
 .box-shadow (@horizontalOffset, @verticalOffset, @blurRadius, @color) {
   -moz-box-shadow: @horizontalOffset @verticalOffset @blurRadius @color;
   -webkit-box-shadow: @horizontalOffset @verticalOffset @blurRadius @color;
