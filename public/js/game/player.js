@@ -6,7 +6,6 @@ window.Tron.Player = (function() {
   }
 
   Player.prototype.draw = function() {
-    //console.log(this.playerId + ": " + this.score);
     var $scoreRow = $(".scoreRow[data-player-id=" + this.playerId + "]");
     if ($scoreRow.size() === 0) {
       $scoreRow = $("#scoreBoard").append("" +

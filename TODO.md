@@ -1,6 +1,9 @@
 TODO
 
 * Create player scoreboard when new player connects and update on deaths/kills.
+* Add player colors to scoreboard
+* Sort player scores
+* Update player scores only when scoreboard changes
 * Refactor all those for loops in game.js
 * Set up Heroku server and load test
 * Unit tests
