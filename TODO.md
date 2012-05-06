@@ -1,6 +1,7 @@
 TODO
 
 * Create player scoreboard when new player connects and update on deaths/kills.
+* Refactor all those for loops in game.js
 * Set up Heroku server and load test
 * Unit tests
 * Allow for multiple "rooms" (instead of one global arena)
