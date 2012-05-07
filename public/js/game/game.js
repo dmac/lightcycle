@@ -68,6 +68,7 @@ window.Tron.Game = (function() {
     for (var i = 0; i < playerData.length; i++) {
       player = new Tron.Player(playerData[i].playerId);
       player.score = playerData[i].score;
+      player.color = playerData[i].color;
       players.push(player);
     }
 

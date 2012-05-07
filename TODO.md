@@ -1,6 +1,5 @@
 TODO
 
-* Add player colors to scoreboard
 * Sort player scores
 * Update player scores only when scoreboard changes
 * Refactor all those for loops in game.js
@@ -15,3 +14,4 @@ DONE
 * Refactor game loop into server so clients only handle drawing game state.
 * Add boundary and path collision to server.
 * Create player scoreboard when new player connects and update on deaths/kills.
+* Add player colors to scoreboard
