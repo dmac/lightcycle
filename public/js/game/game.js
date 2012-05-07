@@ -18,7 +18,6 @@ window.Tron.Game = (function() {
   Game.prototype._draw = function() {
     var context = this.canvas.getContext("2d");
     context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     for (var i = 0; i < this.cycles.length; i++) {
       this.cycles[i].draw();
     }
@@ -26,6 +25,13 @@ window.Tron.Game = (function() {
     for (i = 0; i < this.players.length; i++) {
       this.players[i].draw();
     }
+
+    $sortedRows = $(".scoreRow").sort(function(a, b) {
+      return parseInt($(b).find(".playerScore").html()) - parseInt($(a).find(".playerScore").html());
+    });
+    $sortedRows.each(function(i, row) {
+      $("#scoreBoard").append(row);
+    });
   }
 
   Game.prototype._onAssignId = function(data) {
