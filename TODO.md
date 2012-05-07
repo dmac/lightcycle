@@ -3,6 +3,7 @@ TODO
 * Sort player scores
 * Update player scores only when scoreboard changes
 * Refactor all those for loops in game.js
+* Allow player name input
 * Set up Heroku server and load test
 * Unit tests
 * Allow for multiple "rooms" (instead of one global arena)
