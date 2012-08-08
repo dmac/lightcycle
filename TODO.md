@@ -11,6 +11,7 @@ TODO
 
 DONE
 
+* Remove disconnected players from grid and scoreboard
 * Refactor game loop into server so clients only handle drawing game state.
 * Add boundary and path collision to server.
 * Create player scoreboard when new player connects and update on deaths/kills.

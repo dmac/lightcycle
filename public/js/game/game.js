@@ -22,6 +22,7 @@ window.Tron.Game = (function() {
       this.cycles[i].draw();
     }
 
+    $("#scoreBoard").html("");
     for (i = 0; i < this.players.length; i++) {
       this.players[i].draw();
     }
